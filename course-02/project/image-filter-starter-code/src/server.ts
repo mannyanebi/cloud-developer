@@ -1,15 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
-import {Response, Request} from 'express'
+import {Response, Request, Express} from 'express'
 
 (async () => {
 
   // Init the Express application
-  const app = express();
+  const app: Express = express();
 
   // Set the network port
-  const port = process.env.PORT || 8082;
+  const port:string | number = process.env.PORT || 8082;
   
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
