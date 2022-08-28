@@ -32,6 +32,10 @@ import {Response, Request} from 'express'
 
   //! END @TODO1
   
+  app.get( "/", async ( req: Request, res: Response ) => {
+    res.status(200).send({message: "Welcome to Udagram Image Filter Service. Visit GET /filteredimage?image_url={{URL}} to filter an image"})
+  })
+
   // Root Endpoint
   // Displays a simple message to the user
   app.get( "/filteredimage", async ( req: Request, res: Response ) => {
@@ -44,7 +48,7 @@ import {Response, Request} from 'express'
     res.status(200).sendFile(filteredImageFilePath)
     req.on('close', () => deleteLocalFiles([filteredImageFilePath]))
     } catch (error) {
-      res.status(500).send({message: "Something went wrong. Try again"})
+      res.status(422).send({message: "Something went wrong. Try again"})
     }
   });
   
