@@ -40,11 +40,11 @@ import {Response, Request} from 'express'
   // Displays a simple message to the user
   app.get( "/filteredimage", async ( req: Request, res: Response ) => {
     try {
-      const imageUrl = req.query.image_url.toString();
+      const imageUrl:string = req.query.image_url.toString();
     if(!imageUrl){
       res.status(400).send({message: 'Missing image url'})
     }
-    const filteredImageFilePath = await filterImageFromURL(imageUrl)
+    const filteredImageFilePath:string = await filterImageFromURL(imageUrl)
     res.status(200).sendFile(filteredImageFilePath)
     req.on('close', () => deleteLocalFiles([filteredImageFilePath]))
     } catch (error) {
